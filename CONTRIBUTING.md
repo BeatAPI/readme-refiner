@@ -1,6 +1,6 @@
 # Contributing
 
-README Studio accepts fixes, new repository fixtures, new project-native cover
+Awesome README Studio accepts fixes, new repository fixtures, new project-native cover
 styles, and public before/after examples.
 
 ## Before opening a pull request

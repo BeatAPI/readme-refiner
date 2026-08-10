@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/readme/cover.svg" alt="README Studio — beautiful, truthful, GitHub-safe README homepages" width="100%" />
+  <img src="assets/readme/cover.svg" alt="Awesome README Studio — beautiful, truthful, GitHub-safe README homepages" width="100%" />
 </p>
 
 <p align="center">
@@ -9,9 +9,9 @@
   <a href="#what-it-delivers">What it delivers</a>
 </p>
 
-# README Studio
+# Awesome README Studio
 
-README Studio is an open-source Agent Skill for turning a real repository into
+Awesome README Studio is an open-source Agent Skill for turning a real repository into
 a README people can understand, trust, and keep reading.
 
 It does not stop at writing Markdown. It reads the repository first, creates a
@@ -37,7 +37,7 @@ generated artwork, and complex proof.
 Install the Skill:
 
 ```bash
-npx skills add BeatAPI/readme-studio
+npx skills add BeatAPI/awesome-readme-studio
 ```
 
 Then ask your Agent:
@@ -62,7 +62,7 @@ python skills/beautify-readme/scripts/render_cover.py \
 ## Six project-native cover directions
 
 <p align="center">
-  <img src="assets/readme/style-wall.svg" alt="Six README Studio cover directions: Protocol Grid, Product Proof, Research Field, Ink Archive, Modular Build, and Integration Bridge" width="100%" />
+  <img src="assets/readme/style-wall.svg" alt="Six Awesome README Studio cover directions: Protocol Grid, Product Proof, Research Field, Ink Archive, Modular Build, and Integration Bridge" width="100%" />
 </p>
 
 | Style | Best for | Visual language |
@@ -99,8 +99,8 @@ README.md                         proposed Markdown change
 assets/readme/cover.svg           editable exact-text cover
 assets/readme/cover.webp          optional generated or screenshot layer
 assets/readme/architecture.svg    optional workflow or system explanation
-.readme-studio/report.json        facts, warnings, and decisions
-.readme-studio/preview/            local desktop and mobile previews
+.awesome-readme-studio/report.json facts, warnings, and decisions
+.awesome-readme-studio/preview/    local desktop and mobile previews
 ```
 
 ## Design principles

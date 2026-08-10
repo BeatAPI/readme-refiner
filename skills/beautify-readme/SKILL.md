@@ -79,8 +79,8 @@ Use these defaults unless the repository already has a documented convention:
 assets/readme/cover.svg
 assets/readme/cover.webp
 assets/readme/architecture.svg
-.readme-studio/report.json
-.readme-studio/preview/
+.awesome-readme-studio/report.json
+.awesome-readme-studio/preview/
 ```
 
 Do not create a raster derivative unless the current run produced a real source
