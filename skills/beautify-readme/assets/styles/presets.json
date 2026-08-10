@@ -1,0 +1,80 @@
+{
+  "protocol-grid": {
+    "name": "Protocol Grid",
+    "best_for": ["api", "sdk", "cli", "infrastructure"],
+    "canvas": "1200x400",
+    "background": "#0b0f14",
+    "foreground": "#f0f6fc",
+    "accent": "#2dd4bf",
+    "support": "#7d8590",
+    "motif": "protocol-grid",
+    "layout": "left title, right request-response system path",
+    "proof_slots": ["command", "endpoint", "status"],
+    "negative": ["fake terminal noise", "neon cyberpunk", "tiny code", "invented metrics"]
+  },
+  "product-proof": {
+    "name": "Product Proof",
+    "best_for": ["saas", "web-app", "ai-tool", "gallery"],
+    "canvas": "1200x480",
+    "background": "#f4f3ee",
+    "foreground": "#171917",
+    "accent": "#3158e8",
+    "support": "#656a64",
+    "motif": "proof-cards",
+    "layout": "left promise, right real-output card stack",
+    "proof_slots": ["screenshot", "generated-output", "input-output"],
+    "negative": ["invented UI", "generic device mockup", "decorative screenshots", "unreadable card text"]
+  },
+  "research-field": {
+    "name": "Research Field",
+    "best_for": ["ai", "research", "data", "knowledge-system"],
+    "canvas": "1200x400",
+    "background": "#d97757",
+    "foreground": "#1a1a1a",
+    "accent": "#efeae0",
+    "support": "#4c352d",
+    "motif": "line-nodes",
+    "layout": "asymmetric editorial title and one abstract line metaphor",
+    "proof_slots": ["method", "dataset", "research-question"],
+    "negative": ["brand imitation", "robot icon", "blue glow", "dense infographic"]
+  },
+  "ink-archive": {
+    "name": "Ink Archive",
+    "best_for": ["database", "system-tool", "technical-research", "archive"],
+    "canvas": "1200x400",
+    "background": "#ded9cf",
+    "foreground": "#111111",
+    "accent": "#343434",
+    "support": "#615f59",
+    "motif": "dot-matrix",
+    "layout": "left mechanical title, right small dot-matrix metaphor",
+    "proof_slots": ["record", "query", "index"],
+    "negative": ["fourth color", "gradient", "oversized illustration", "heavy distress"]
+  },
+  "modular-build": {
+    "name": "Modular Build",
+    "best_for": ["builder", "tutorial", "automation", "low-code"],
+    "canvas": "1200x400",
+    "background": "#f8f6ea",
+    "foreground": "#17202a",
+    "accent": "#ff7a45",
+    "support": "#3973e6",
+    "motif": "blocks",
+    "layout": "title as construction plan with a navigable block path",
+    "proof_slots": ["module", "step", "output"],
+    "negative": ["child sticker collage", "generic pixel filter", "crowded blocks", "game trademark imitation"]
+  },
+  "integration-bridge": {
+    "name": "Integration Bridge",
+    "best_for": ["plugin", "mcp", "api-integration", "workflow"],
+    "canvas": "1200x400",
+    "background": "#f5f7f8",
+    "foreground": "#17202a",
+    "accent": "#7257ff",
+    "support": "#20a4a4",
+    "motif": "bridge",
+    "layout": "left and right endpoints joined by one controlled connector",
+    "proof_slots": ["endpoint-a", "endpoint-b", "shared-action"],
+    "negative": ["extra logos", "complex flowchart", "glossy toy icons", "unapproved trademarks"]
+  }
+}

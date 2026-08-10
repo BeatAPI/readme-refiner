@@ -1,0 +1,9 @@
+{
+  "repository": "BeatAPI/BeatAPI",
+  "project_type": "workflow-first asynchronous API",
+  "audience": ["AI product builders", "API developers", "SaaS teams"],
+  "confirmed_promise": "Create and track complete AI video workflows through one asynchronous API contract.",
+  "recommended_styles": ["protocol-grid", "product-proof", "integration-bridge"],
+  "recommended_proof": ["task lifecycle", "public API request", "dashboard task result"],
+  "status": "example brief only; source facts must be refreshed before generating a README"
+}
