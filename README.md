@@ -130,3 +130,6 @@ show at least one real repository result. See [CONTRIBUTING.md](CONTRIBUTING.md)
 ## License
 
 MIT
+---
+
+<sub>Maintained by <a href="https://github.com/BeatAPI"><b>BeatAPI</b></a> · <a href="https://beatapi.io">beatapi.io</a> — async AI video APIs for music videos and product ads.</sub>
