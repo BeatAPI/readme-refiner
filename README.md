@@ -5,7 +5,8 @@
 <p align="center">
   <a href="skills/refine-readme/SKILL.md">Agent Skill</a> ·
   <a href="#quick-start">Quick start</a> ·
-  <a href="#six-project-native-cover-directions">Cover styles</a> ·
+  <a href="#from-repository-evidence-to-three-directions">Directions</a> ·
+  <a href="#real-before--after">Before / After</a> ·
   <a href="#what-it-delivers">What it delivers</a>
 </p>
 
@@ -51,21 +52,35 @@ Or run the deterministic helpers directly:
 
 ```bash
 python skills/refine-readme/scripts/inspect_repository.py /path/to/repository
+python skills/refine-readme/scripts/plan_directions.py /path/to/repository
 python skills/refine-readme/scripts/check_readme.py /path/to/repository
 python skills/refine-readme/scripts/render_cover.py \
   --style protocol-grid \
   --title "My Project" \
   --tagline "One clear promise backed by real proof" \
+  --eyebrow "ASYNC VIDEO API" \
+  --proof-label "POST /v1/tasks" \
   --output assets/readme/cover.svg
 ```
 
-## Six project-native cover directions
+## From repository evidence to three directions
+
+Before creating a cover, the Skill resolves five things: audience, one-sentence
+value, primary proof, first successful action, and native visual material. It
+then proposes three directions that each identify a repository-specific motif,
+proof source, construction mode, hero composition, and risk.
+
+The bundled styles below are direction seeds, not fixed templates. Their palette,
+composition, and proof slots are adapted to the project. If removing the project
+name would make the result fit an unrelated repository, the direction fails.
+
+## Six cover direction seeds
 
 <p align="center">
   <img src="assets/readme/style-wall.svg" alt="Six README Refiner cover directions: Protocol Grid, Product Proof, Research Field, Ink Archive, Modular Build, and Integration Bridge" width="100%" />
 </p>
 
-| Style | Best for | Visual language |
+| Seed | Best for | Visual language |
 | --- | --- | --- |
 | Protocol Grid | APIs, SDKs, CLIs, infrastructure | Terminal rhythm, request/response blocks, grids, system paths |
 | Product Proof | SaaS, web apps, AI tools | Real screenshots or outputs framed by precise SVG typography |
@@ -77,6 +92,25 @@ python skills/refine-readme/scripts/render_cover.py \
 Generated imagery never owns exact project text. When a style needs an organic
 subject, image generation creates only the subject or background; deterministic
 SVG overlays the project name, commands, labels, and factual claims.
+User covers contain no README Refiner watermark or branding by default.
+
+## Real Before / After
+
+<p align="center">
+  <img src="assets/readme/awesome-3d-prompts-before-after.svg" alt="Awesome 3D Prompts README before and after: a text-only 29-case table becomes a visual 300-plus-case gallery with a hero, workflow navigation, result media, and evidence labels" width="100%" />
+</p>
+
+The public [`BeatAPI/awesome-3d-prompts`](https://github.com/BeatAPI/awesome-3d-prompts)
+history provides a durable comparison: the
+[`a591c0f` snapshot](https://github.com/BeatAPI/awesome-3d-prompts/blob/a591c0ffee88fb5d529f4da0931465ce37980a25/README.md)
+is an 80-line, text-first catalog with 29 accepted cases; the
+[`ac37217` snapshot](https://github.com/BeatAPI/awesome-3d-prompts/blob/ac37217b7b723fbe38095503e06e3b818fbb1a85/README.md)
+is a 300+ case visual gallery with a hero, workflow navigation, result media,
+prompt-fidelity labels, and source attribution.
+
+[See the evidence and exact comparison](examples/awesome-3d-prompts-before-after.md).
+This is a real repository-history reference for the Refiner quality bar, not a
+claim that this Skill authored the historical commits.
 
 ## Modes
 
@@ -84,7 +118,7 @@ SVG overlays the project name, commands, labels, and factual claims.
 | --- | --- |
 | `audit` | Read-only review of clarity, proof, trust, and maintenance cost |
 | `cover` | Recommend three directions and create cover assets only |
-| `beautify` | Apply the complete five-layer workflow and produce a README diff |
+| `beautify` | Apply the complete project-native workflow and produce a README diff |
 | `check` | Run factual and GitHub rendering checks without redesigning |
 
 No mode commits, pushes, opens a pull request, or publishes without explicit
@@ -116,8 +150,9 @@ assets/readme/architecture.svg    optional workflow or system explanation
 
 ## Status
 
-This is the first public version. The core workflow, six cover presets, repository
-inspector, README checker, and deterministic SVG renderer are available now.
+This is the first public version. The project-native direction gate, six cover
+seeds, repository inspector, direction planner, README checker, and deterministic
+SVG renderer are available now.
 GitHub-like browser previews, additional project fixtures, and continuous README
 checks will be added through real repository usage.
 

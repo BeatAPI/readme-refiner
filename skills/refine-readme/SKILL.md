@@ -16,14 +16,14 @@ wants `audit`, `cover`, `beautify`, or `check`.
 
 - `audit`: inspect and report only; do not edit files.
 - `cover`: create visual assets only; do not edit README content or references.
-- `beautify`: execute the complete five-layer workflow and propose a README diff.
+- `beautify`: execute the complete project-native workflow and propose a README diff.
 - `check`: validate facts and GitHub rendering without redesigning.
 
 Reading repository files does not grant permission to edit, commit, push, open a
 pull request, or publish. Always preview first. Require separate explicit
 approval for commit, push, PR, and publication actions.
 
-## Run the five-layer workflow
+## Run the project-native workflow
 
 1. Establish repository truth.
    - Inspect the current README, manifests, package scripts, public routes,
@@ -33,7 +33,19 @@ approval for commit, push, PR, and publication actions.
    - Build a fact ledger that separates confirmed evidence, reasonable
      inference, user-supplied claims, and unsupported claims.
 
-2. Rebuild the story and Markdown hierarchy.
+2. Pass the project-native direction gate.
+   - Resolve the audience, one-sentence value, primary proof, first successful
+     action, and native visual material before selecting a style.
+   - Run `scripts/plan_directions.py <repository>` for three evidence-led
+     candidates, then sharpen them with repository-specific reasoning.
+   - If the planner reports a blocked gate, request repository evidence instead
+     of returning arbitrary zero-evidence styles.
+   - For every direction, explain why it fits, its project-native motif, its
+     real proof, construction mode, hero composition, and primary risk.
+   - Treat bundled styles as seeds and constraints, not immutable templates.
+   - Read `references/project-native-directions.md` before recommending styles.
+
+3. Rebuild the story and Markdown hierarchy.
    - Make the first screen answer what the project is, who it is for, what proof
      exists, and how to try it.
    - Move real screenshots, outputs, examples, or a minimal command ahead of
@@ -42,20 +54,21 @@ approval for commit, push, PR, and publication actions.
      precise and scannable.
    - Read `references/five-layer-workflow.md` for the default section logic.
 
-3. Create the cover and visual identity.
+4. Create the cover and visual identity.
    - In `beautify` mode, create a cover unless the user explicitly opts out.
    - Default to `1200x400` SVG. Use `1200x320` for compact technical projects
      and `1200x480` for proof-rich showcases.
-   - When no style is selected, recommend exactly three suitable presets from
-     `references/style-catalog.md`, explain each in one sentence, and ask the
-     user to choose. Auto-select only when the user says to decide automatically.
-   - Use exactly one style preset. Do not blend multiple visual systems.
+   - When no direction is selected, recommend exactly three evidence-led
+     directions and ask the user to choose. Auto-select only when the user says
+     to decide automatically.
+   - Choose one coherent direction. Adapt one style seed to the project instead
+     of applying a fixed template or mixing unrelated decorative traits.
    - Use `scripts/render_cover.py` for deterministic exact-text SVG covers.
    - If generated imagery is needed, generate only the subject, texture, or
      background. Add project names, commands, metrics, and labels through SVG.
    - Read `references/cover-system.md` before creating or reviewing a cover.
 
-4. Add proof and explanation.
+5. Add proof and explanation.
    - Prefer real screenshots, outputs, input/output comparisons, terminal
      captures, or diagrams over decorative images.
    - Use SVG for exact diagrams and coordinated section transitions; use
@@ -63,7 +76,7 @@ approval for commit, push, PR, and publication actions.
    - Keep explanations and commands in Markdown so they remain searchable and
      copyable.
 
-5. Validate and deliver.
+6. Validate and deliver.
    - Run `scripts/check_readme.py <repository>`.
    - Review factual claims against the ledger and `references/fact-check.md`.
    - Apply the GitHub rendering rules in `references/github-rendering.md`.
@@ -92,8 +105,11 @@ to the run.
 - The first screen communicates one concrete promise and one real proof.
 - The cover uses exact, readable text and survives narrow rendering.
 - The title, palette, motifs, and proof feel native to this repository.
+- Removing the project name would not make the visual fit an unrelated project.
 - Claims, commands, paths, versions, ports, and public interfaces match source.
 - Images have meaningful alt text and do not replace essential body content.
 - Relative paths and heading anchors resolve.
 - The result remains useful with images disabled.
 - The user can review every change before anything is published.
+- Do not place README Refiner branding in user assets by default; attribution is
+  optional and belongs outside the project hero.
