@@ -30,8 +30,8 @@ def main() -> int:
         errors.append("SKILL.md is missing YAML frontmatter")
     else:
         header = frontmatter.group(1)
-        if not re.search(r"^name:\s*beautify-readme\s*$", header, re.MULTILINE):
-            errors.append("frontmatter name must be beautify-readme")
+        if not re.search(r"^name:\s*refine-readme\s*$", header, re.MULTILINE):
+            errors.append("frontmatter name must be refine-readme")
         if not re.search(r"^description:\s*\S.+$", header, re.MULTILINE):
             errors.append("frontmatter description is required")
 
@@ -59,7 +59,7 @@ def main() -> int:
     if errors:
         print("\n".join(f"ERROR: {item}" for item in errors))
         return 1
-    print(f"Skill valid: beautify-readme ({len(presets)} style presets)")
+    print(f"Skill valid: refine-readme ({len(presets)} style presets)")
     return 0
 
 

@@ -1,0 +1,4 @@
+interface:
+  display_name: "README Refiner"
+  short_description: "Create clear, polished, GitHub-ready README homepages"
+  default_prompt: "Use $refine-readme to improve this repository README from real evidence, create three project-native cover directions, and show a local preview and diff before publishing anything."

@@ -8,7 +8,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = ROOT / "skills" / "beautify-readme" / "scripts"
+SCRIPTS = ROOT / "skills" / "refine-readme" / "scripts"
 
 
 def load(name: str):

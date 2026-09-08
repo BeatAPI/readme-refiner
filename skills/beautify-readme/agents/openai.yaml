@@ -1,4 +1,0 @@
-interface:
-  display_name: "Beautify README"
-  short_description: "Create beautiful, truthful, GitHub-safe README homepages"
-  default_prompt: "Use $beautify-readme to improve this repository README from real evidence, create three project-native cover directions, and show a local preview and diff before publishing anything."

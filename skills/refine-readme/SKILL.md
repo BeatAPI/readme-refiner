@@ -1,11 +1,11 @@
 ---
-name: beautify-readme
+name: refine-readme
 description: Redesign, generate, or audit a GitHub repository README using real repository evidence, a required project-native cover, maintainable Markdown, proof media, diagrams, and factual/GitHub rendering checks. Use when a user asks to beautify, improve, generate, restructure, review, fact-check, or create visual assets for a repository README, including README covers, SVG heroes, screenshots, workflows, before/after examples, and GitHub-safe previews.
 ---
 
-# Beautify README
+# Refine README
 
-Turn a real repository into a clear, beautiful, truthful, and maintainable
+Turn a real repository into a clear, polished, truthful, and maintainable
 GitHub homepage. Treat the README as a product landing page constrained by
 GitHub rendering, not as a poster or a generic generated document.
 
@@ -79,8 +79,8 @@ Use these defaults unless the repository already has a documented convention:
 assets/readme/cover.svg
 assets/readme/cover.webp
 assets/readme/architecture.svg
-.awesome-readme-studio/report.json
-.awesome-readme-studio/preview/
+.readme-refiner/report.json
+.readme-refiner/preview/
 ```
 
 Do not create a raster derivative unless the current run produced a real source

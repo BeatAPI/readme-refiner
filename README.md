@@ -1,18 +1,18 @@
 <p align="center">
-  <img src="assets/readme/cover.svg" alt="Awesome README Studio — beautiful, truthful, GitHub-safe README homepages" width="100%" />
+  <img src="assets/readme/cover.svg" alt="README Refiner — clear, polished, GitHub-ready READMEs grounded in real repositories" width="100%" />
 </p>
 
 <p align="center">
-  <a href="skills/beautify-readme/SKILL.md">Agent Skill</a> ·
+  <a href="skills/refine-readme/SKILL.md">Agent Skill</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#six-project-native-cover-directions">Cover styles</a> ·
   <a href="#what-it-delivers">What it delivers</a>
 </p>
 
-# Awesome README Studio
+# README Refiner
 
-Awesome README Studio is an open-source Agent Skill for turning a real repository into
-a README people can understand, trust, and keep reading.
+README Refiner is an open-source Agent Skill that turns real repositories into
+clear, polished, GitHub-ready README homepages.
 
 It does not stop at writing Markdown. It reads the repository first, creates a
 project-native cover and visual system, moves real proof forward, checks claims
@@ -37,22 +37,22 @@ generated artwork, and complex proof.
 Install the Skill:
 
 ```bash
-npx skills add BeatAPI/awesome-readme-studio
+npx skills add BeatAPI/readme-refiner
 ```
 
 Then ask your Agent:
 
 ```text
-Use $beautify-readme to redesign this repository around its real project theme.
+Use $refine-readme to redesign this repository around its real project theme.
 Show me three cover directions and a local preview first. Do not push anything.
 ```
 
 Or run the deterministic helpers directly:
 
 ```bash
-python skills/beautify-readme/scripts/inspect_repository.py /path/to/repository
-python skills/beautify-readme/scripts/check_readme.py /path/to/repository
-python skills/beautify-readme/scripts/render_cover.py \
+python skills/refine-readme/scripts/inspect_repository.py /path/to/repository
+python skills/refine-readme/scripts/check_readme.py /path/to/repository
+python skills/refine-readme/scripts/render_cover.py \
   --style protocol-grid \
   --title "My Project" \
   --tagline "One clear promise backed by real proof" \
@@ -62,7 +62,7 @@ python skills/beautify-readme/scripts/render_cover.py \
 ## Six project-native cover directions
 
 <p align="center">
-  <img src="assets/readme/style-wall.svg" alt="Six Awesome README Studio cover directions: Protocol Grid, Product Proof, Research Field, Ink Archive, Modular Build, and Integration Bridge" width="100%" />
+  <img src="assets/readme/style-wall.svg" alt="Six README Refiner cover directions: Protocol Grid, Product Proof, Research Field, Ink Archive, Modular Build, and Integration Bridge" width="100%" />
 </p>
 
 | Style | Best for | Visual language |
@@ -99,8 +99,8 @@ README.md                         proposed Markdown change
 assets/readme/cover.svg           editable exact-text cover
 assets/readme/cover.webp          optional generated or screenshot layer
 assets/readme/architecture.svg    optional workflow or system explanation
-.awesome-readme-studio/report.json facts, warnings, and decisions
-.awesome-readme-studio/preview/    local desktop and mobile previews
+.readme-refiner/report.json        facts, warnings, and decisions
+.readme-refiner/preview/           local desktop and mobile previews
 ```
 
 ## Design principles

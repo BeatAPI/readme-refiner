@@ -1,19 +1,19 @@
 # Contributing
 
-Awesome README Studio accepts fixes, new repository fixtures, new project-native cover
+README Refiner accepts fixes, new repository fixtures, new project-native cover
 styles, and public before/after examples.
 
 ## Before opening a pull request
 
 ```bash
 python -m unittest discover -s tests -v
-python skills/beautify-readme/scripts/validate_skill.py
-python skills/beautify-readme/scripts/check_readme.py .
+python skills/refine-readme/scripts/validate_skill.py
+python skills/refine-readme/scripts/check_readme.py .
 ```
 
 ## Adding a style
 
-Add one entry to `skills/beautify-readme/assets/styles/presets.json` and include:
+Add one entry to `skills/refine-readme/assets/styles/presets.json` and include:
 
 - a stable lowercase ID;
 - the repository types it serves;

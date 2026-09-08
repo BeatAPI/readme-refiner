@@ -104,7 +104,7 @@ def render(style_id: str, title: str, tagline: str, accent_override: str | None 
   </style>
   <rect width="{width}" height="{height}" rx="24" fill="{background}"/>
   <rect width="{width}" height="{height}" rx="24" fill="url(#grid)" opacity="{'.45' if style_id == 'protocol-grid' else '.08'}"/>
-  <text x="72" y="72" fill="{accent}" class="mono small" letter-spacing="2">AWESOME README STUDIO · {style_name.upper()}</text>
+  <text x="72" y="72" fill="{accent}" class="mono small" letter-spacing="2">README REFINER · {style_name.upper()}</text>
   <text x="72" y="190" fill="{foreground}" class="{'serif' if style_id == 'research-field' else 'sans'}" font-size="{font_size}" font-weight="800" letter-spacing="-2">{safe_title}</text>
   <text x="76" y="242" fill="{support}" class="sans" font-size="22" font-weight="600">{safe_tagline}</text>
   <rect x="72" y="292" width="188" height="42" rx="21" fill="{accent}"/>
@@ -117,7 +117,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--style")
     parser.add_argument("--title")
-    parser.add_argument("--tagline", default="A beautiful, truthful, GitHub-safe README")
+    parser.add_argument("--tagline", default="A clear, polished, GitHub-ready README")
     parser.add_argument("--accent", help="Optional CSS color override")
     parser.add_argument("--output")
     parser.add_argument("--list-styles", action="store_true")
