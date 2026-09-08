@@ -53,6 +53,28 @@ def package_facts(path: Path) -> dict:
     }
 
 
+def pyproject_facts(path: Path) -> dict:
+    text = read_text(path)
+    if not text:
+        return {"parse_error": True}
+    project_match = re.search(r"(?ms)^\[project\]\s*(.*?)(?=^\[|\Z)", text)
+    project_text = project_match.group(1) if project_match else ""
+
+    def scalar(name: str) -> str | None:
+        match = re.search(rf'(?m)^{re.escape(name)}\s*=\s*["\']([^"\']+)["\']', project_text)
+        return match.group(1) if match else None
+
+    scripts_match = re.search(r"(?ms)^\[project\.scripts\]\s*(.*?)(?=^\[|\Z)", text)
+    scripts_text = scripts_match.group(1) if scripts_match else ""
+    scripts = sorted(re.findall(r"(?m)^([A-Za-z0-9_.-]+)\s*=", scripts_text))
+    return {
+        "name": scalar("name"),
+        "description": scalar("description"),
+        "requires_python": scalar("requires-python"),
+        "scripts": scripts,
+    }
+
+
 def inventory(root: Path) -> dict:
     readme = find_readme(root)
     readme_text = read_text(readme) if readme else ""
@@ -65,10 +87,15 @@ def inventory(root: Path) -> dict:
     for name in MANIFESTS:
         path = root / name
         if path.is_file():
-            manifests[name] = package_facts(path) if name == "package.json" else "present"
+            if name == "package.json":
+                manifests[name] = package_facts(path)
+            elif name == "pyproject.toml":
+                manifests[name] = pyproject_facts(path)
+            else:
+                manifests[name] = "present"
 
     assets: list[str] = []
-    for base_name in ("assets", "public", "docs", "media", "screenshots"):
+    for base_name in ("assets", "_assets", "public", "docs", "media", "screenshots"):
         base = root / base_name
         if not base.is_dir():
             continue
@@ -81,7 +108,10 @@ def inventory(root: Path) -> dict:
                     break
 
     package = manifests.get("package.json") if isinstance(manifests.get("package.json"), dict) else {}
+    pyproject = manifests.get("pyproject.toml") if isinstance(manifests.get("pyproject.toml"), dict) else {}
     project_name = package.get("name") if package else None
+    if not project_name and pyproject:
+        project_name = pyproject.get("name")
     if not project_name and headings:
         project_name = re.sub(r"[*_`]", "", headings[0]["text"])
 
@@ -89,6 +119,7 @@ def inventory(root: Path) -> dict:
         "root": str(root),
         "project_name": project_name or root.name,
         "readme": readme.name if readme else None,
+        "readme_excerpt": re.sub(r"\s+", " ", readme_text[:2_500]).strip(),
         "headings": headings,
         "manifests": manifests,
         "existing_visual_assets": sorted(assets),

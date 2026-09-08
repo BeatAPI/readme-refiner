@@ -14,6 +14,7 @@ REQUIRED = (
     "agents/openai.yaml",
     "references/five-layer-workflow.md",
     "references/cover-system.md",
+    "references/project-native-directions.md",
     "references/style-catalog.md",
     "references/fact-check.md",
     "references/github-rendering.md",

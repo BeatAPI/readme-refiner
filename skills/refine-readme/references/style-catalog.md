@@ -1,7 +1,9 @@
-# Cover style catalog
+# Cover direction seeds
 
-Recommend exactly three styles when the user has not selected one. Select one
-final style before generating production assets.
+Recommend exactly three evidence-led directions when the user has not selected
+one. These entries provide useful constraints and production primitives; they
+are not six fixed templates. Adapt one seed around a repository-native motif and
+real proof before generating production assets.
 
 | Style | Best for | Distinguishing anchors |
 | --- | --- | --- |
@@ -13,3 +15,7 @@ final style before generating production assets.
 | `integration-bridge` | Plugins, MCP, APIs, integrations | Two recognizable endpoints, one restrained connector, derived accent colors |
 
 Full machine-readable metadata lives in `../assets/styles/presets.json`.
+
+Do not expose the internal seed name as user-facing branding inside the cover.
+Do not add README Refiner branding, watermarks, or promotional links to project
+assets unless the user explicitly requests attribution.

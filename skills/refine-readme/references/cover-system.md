@@ -22,6 +22,8 @@ strong symbolic or typographic identities. Keep all factual text in SVG source.
 
 Use real screenshots, terminal output, generated results, or prompt cards inside
 a deterministic SVG frame. Do not invent dashboard data or polished outputs.
+Use a single-board hero only when the proof remains readable at the target
+GitHub width. Otherwise make the cover simple and place proof immediately below.
 
 ### Hybrid generated subject
 
@@ -37,6 +39,8 @@ place it under exact SVG typography. Preserve a source prompt and editable SVG.
 - Use no more than one short supporting line in the cover.
 - Avoid tiny fake UI, dense diagrams, long feature lists, and decorative badges.
 - Test the cover on light and dark GitHub themes and near 360 CSS pixels wide.
+- Keep project attribution separate from tool attribution. User covers contain
+  no README Refiner branding or watermark by default.
 
 ## Required checks
 

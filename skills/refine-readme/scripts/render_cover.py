@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import textwrap
 from html import escape
 from pathlib import Path
@@ -12,17 +13,33 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PRESETS_PATH = HERE.parent / "assets" / "styles" / "presets.json"
+SAFE_COLOR = re.compile(
+    r"^(?:#[0-9a-fA-F]{3,8}|[A-Za-z]+|(?:rgb|rgba|hsl|hsla|oklch)\([0-9.,% /+-]+\))$"
+)
 
 
 def load_presets() -> dict:
     return json.loads(PRESETS_PATH.read_text(encoding="utf-8"))
 
 
-def motif(style: str, accent: str, support: str, foreground: str) -> str:
+def validate_color(value: str) -> str:
+    if not SAFE_COLOR.fullmatch(value):
+        raise ValueError("accent must be a plain CSS color value")
+    return value
+
+
+def motif(
+    style: str,
+    accent: str,
+    support: str,
+    foreground: str,
+    proof_label: str,
+) -> str:
+    safe_proof_label = escape(textwrap.shorten(proof_label, width=42, placeholder="…"))
     if style == "protocol-grid":
         return f'''<g transform="translate(760 76)">
   <rect width="360" height="248" rx="18" fill="#111820" stroke="{support}" stroke-opacity=".45"/>
-  <text x="24" y="42" fill="{accent}" class="mono small">POST /v1/tasks</text>
+  <text x="24" y="42" fill="{accent}" class="mono small">{safe_proof_label}</text>
   <path d="M24 64H336" stroke="{support}" stroke-opacity=".35"/>
   <rect x="24" y="88" width="132" height="40" rx="8" fill="{accent}" fill-opacity=".12" stroke="{accent}"/>
   <text x="42" y="114" fill="{accent}" class="mono tiny">REQUEST</text>
@@ -31,7 +48,7 @@ def motif(style: str, accent: str, support: str, foreground: str) -> str:
   <text x="246" y="114" fill="{accent}" class="mono tiny">OUTPUT</text>
   <circle cx="36" cy="180" r="6" fill="{accent}"/><path d="M48 180H310" stroke="{support}" stroke-width="2" stroke-dasharray="7 8"/>
   <circle cx="324" cy="180" r="6" fill="{accent}"/>
-  <text x="24" y="222" fill="{support}" class="mono tiny">truth → design → proof → check</text>
+  <text x="24" y="222" fill="{support}" class="mono tiny">REQUEST → TASK → VERIFIED OUTPUT</text>
 </g>'''
     if style == "product-proof":
         return f'''<g transform="translate(770 56)">
@@ -74,7 +91,15 @@ def motif(style: str, accent: str, support: str, foreground: str) -> str:
 </g>'''
 
 
-def render(style_id: str, title: str, tagline: str, accent_override: str | None = None) -> str:
+def render(
+    style_id: str,
+    title: str,
+    tagline: str,
+    accent_override: str | None = None,
+    eyebrow: str | None = None,
+    badge: str | None = None,
+    proof_label: str = "PROJECT PROOF",
+) -> str:
     presets = load_presets()
     if style_id not in presets:
         raise KeyError(f"unknown style: {style_id}; choose from {', '.join(sorted(presets))}")
@@ -82,12 +107,28 @@ def render(style_id: str, title: str, tagline: str, accent_override: str | None 
     width, height = (int(value) for value in preset["canvas"].split("x"))
     background = preset["background"]
     foreground = preset["foreground"]
-    accent = accent_override or preset["accent"]
+    accent = validate_color(accent_override) if accent_override else preset["accent"]
     support = preset["support"]
     safe_title = escape(title)
     safe_tagline = escape(textwrap.shorten(tagline, width=78, placeholder="…"))
-    style_name = escape(preset["name"])
+    safe_eyebrow = escape(textwrap.shorten(eyebrow, width=48, placeholder="…")) if eyebrow else ""
+    raw_badge = textwrap.shorten(badge, width=24, placeholder="…") if badge else ""
+    safe_badge = escape(raw_badge)
     font_size = 76 if len(title) <= 18 else 60 if len(title) <= 30 else 48
+    eyebrow_svg = (
+        f'<text x="72" y="72" fill="{accent}" class="mono small" '
+        f'letter-spacing="2">{safe_eyebrow}</text>'
+        if safe_eyebrow
+        else ""
+    )
+    badge_width = min(260, max(150, 36 + len(raw_badge) * 9))
+    badge_text_x = 72 + badge_width / 2
+    badge_svg = (
+        f'''<rect x="72" y="292" width="{badge_width}" height="42" rx="21" fill="{accent}"/>
+  <text x="{badge_text_x:g}" y="319" text-anchor="middle" fill="{background}" class="mono" font-size="15" font-weight="800">{safe_badge}</text>'''
+        if safe_badge
+        else ""
+    )
 
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">
   <title id="title">{safe_title}</title>
@@ -104,12 +145,11 @@ def render(style_id: str, title: str, tagline: str, accent_override: str | None 
   </style>
   <rect width="{width}" height="{height}" rx="24" fill="{background}"/>
   <rect width="{width}" height="{height}" rx="24" fill="url(#grid)" opacity="{'.45' if style_id == 'protocol-grid' else '.08'}"/>
-  <text x="72" y="72" fill="{accent}" class="mono small" letter-spacing="2">README REFINER · {style_name.upper()}</text>
+  {eyebrow_svg}
   <text x="72" y="190" fill="{foreground}" class="{'serif' if style_id == 'research-field' else 'sans'}" font-size="{font_size}" font-weight="800" letter-spacing="-2">{safe_title}</text>
   <text x="76" y="242" fill="{support}" class="sans" font-size="22" font-weight="600">{safe_tagline}</text>
-  <rect x="72" y="292" width="188" height="42" rx="21" fill="{accent}"/>
-  <text x="166" y="319" text-anchor="middle" fill="{background}" class="mono" font-size="15" font-weight="800">BEAUTIFUL · TRUE</text>
-  {motif(style_id, accent, support, foreground)}
+  {badge_svg}
+  {motif(style_id, accent, support, foreground, proof_label)}
 </svg>'''
 
 
@@ -119,6 +159,9 @@ def main() -> int:
     parser.add_argument("--title")
     parser.add_argument("--tagline", default="A clear, polished, GitHub-ready README")
     parser.add_argument("--accent", help="Optional CSS color override")
+    parser.add_argument("--eyebrow", help="Optional project-owned category or product label")
+    parser.add_argument("--badge", help="Optional short verified callout; omitted by default")
+    parser.add_argument("--proof-label", default="PROJECT PROOF", help="Short project-native label used by the motif")
     parser.add_argument("--output")
     parser.add_argument("--list-styles", action="store_true")
     args = parser.parse_args()
@@ -130,8 +173,16 @@ def main() -> int:
     if not args.style or not args.title or not args.output:
         parser.error("--style, --title, and --output are required unless --list-styles is used")
     try:
-        svg = render(args.style, args.title, args.tagline, args.accent)
-    except KeyError as error:
+        svg = render(
+            args.style,
+            args.title,
+            args.tagline,
+            args.accent,
+            args.eyebrow,
+            args.badge,
+            args.proof_label,
+        )
+    except (KeyError, ValueError) as error:
         parser.error(str(error))
     output = Path(args.output).expanduser().resolve()
     output.parent.mkdir(parents=True, exist_ok=True)
